@@ -4,13 +4,17 @@ let restaurants,
 var newMap
 var markers = []
 
-
-if ('serviceWorker' in Navigator) {
-  Navigator.serviceWorker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
     .register('/sw.js')
-    .catch(function(err) {
-      console.error(err);
-    });
+    .then(register => console.log('service Worker: registered'))
+    .catch(err => console.log(`Service Worker: Error: ${err}`))
+    
+  })
+}
+else {
+  console.log ('nothing working')
 }
 
 
